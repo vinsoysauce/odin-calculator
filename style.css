@@ -2,6 +2,7 @@ body {
     margin: 0;
     min-height: 100vh;
     font-family: 'Roboto', sans-serif;
+    background-color: azure;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14,7 +15,61 @@ body {
 }
 
 #box {
-    width: 400px;
-    height: 600px;
+    width: 300px;
+    height: 410px;
     border: 1px solid black;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
 }
+
+
+#screen-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen {
+    width: 280px;
+    height: 80px;
+    border: 1px solid black;
+    margin: 3px;
+}
+
+#button-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 5px;
+}
+
+#first-row, #second-row, #third-row, #fourth-row, #fifth-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    margin: 2px;
+}
+
+.equals {
+    flex-grow: 5.5;
+}
+
+button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    flex-grow: 1;
+    font-size: larger;
+    margin: 3px;
+    width: 50px;
+    height: 50px;
+}
+
+
+
