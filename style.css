@@ -54,7 +54,7 @@ body {
     margin: 5px;
 }
 
-.first-row, .second-row, .third-row, .fourth-row, .fifth-row {
+#first-row, #second-row, #third-row, #fourth-row, #fifth-row {
     display: flex;
     flex-direction: row;
     justify-content: center;
