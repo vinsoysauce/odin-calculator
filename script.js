@@ -1,8 +1,8 @@
 const numbers = document.querySelectorAll('.numbers')
 const operators = document.querySelectorAll('.operators')
-const content = document.querySelector('.content')
-content.textContent = '';
-let holdValue = ''
+const display = document.querySelector('.content')
+display.textContent = '';
+
 const operand = {
   num1: 0,
   num2: 0,
@@ -13,6 +13,31 @@ const subtract = (num1, num2) => num1 - num2;
 const multiply = (num1, num2) => num1 * num2;
 const divide = (num1, num2) => num1 / num2;
 const operate = (operator, num1, num2) => operator(num1, num2)
+
+for (let i = 0; i < operators.length; i++) {
+    operators[i].addEventListener('click', (event) => {
+        switch(event.target.id) {
+            case 'add':
+                break
+            case 'subtract':
+                break
+            case 'multiply':
+                break
+            case 'divide':
+                break
+            case 'decimal':
+                break
+            case 'equals':
+                break
+        }
+    })
+}
+
+for (let i = 0; i < numbers.length; i++) {
+    numbers[i].addEventListener('click', (event) => {
+        display.textContent += event.target.id
+    })
+}
 
 
 // button.addEventListener('click', (event) => {
@@ -51,22 +76,3 @@ const operate = (operator, num1, num2) => operator(num1, num2)
 //         operand.num2 = +content.textContent
 //     }
 // })
-
-for (let i = 0; i < operators.length; i++) {
-    operators[i].addEventListener('click', (event) => {
-        switch(event.target.id) {
-            case 'add':
-                break
-            case 'subtract':
-                break
-            case 'multiply':
-                break
-            case 'divide':
-                break
-            case 'decimal':
-                break
-            case 'equals':
-                break
-        }
-    })
-}
