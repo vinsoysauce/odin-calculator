@@ -1,11 +1,13 @@
-const numbers = document.querySelectorAll('.numbers')
-const operators = document.querySelectorAll('.operators')
-const display = document.querySelector('.content')
+const numbers = document.querySelectorAll('.numbers');
+const operators = document.querySelectorAll('.operators');
+const hover = document.querySelectorAll('button');
+const display = document.querySelector('.content');
 display.textContent = '';
 
-const operand = {
+const user = {
   num1: 0,
   num2: 0,
+  operator: function(){},
 }
 
 const add = (num1, num2) => num1 + num2;
@@ -13,6 +15,13 @@ const subtract = (num1, num2) => num1 - num2;
 const multiply = (num1, num2) => num1 * num2;
 const divide = (num1, num2) => num1 / num2;
 const operate = (operator, num1, num2) => operator(num1, num2)
+const zeroDivision = (num1, num2) => {
+    if (num1 === 0 || num2 === 0) {
+        display.textContent = 'MATH ERROR'
+        return
+    }
+} 
+
 
 for (let i = 0; i < operators.length; i++) {
     operators[i].addEventListener('click', (event) => {
@@ -24,6 +33,7 @@ for (let i = 0; i < operators.length; i++) {
             case 'multiply':
                 break
             case 'divide':
+                zeroDivision(user.num1, user.num2)
                 break
             case 'decimal':
                 break

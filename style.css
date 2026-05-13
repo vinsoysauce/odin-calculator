@@ -12,12 +12,11 @@ body {
 #container {
     width: 300px;
     height: 410px;
-    border: 1px solid black;
     flex-direction: column;
     justify-content: center;
     align-content: center;
     border-radius: 5px;
-    background-color:honeydew;
+    background-color:wheat;
 }
 
 
@@ -33,7 +32,6 @@ body {
 .screen {
     width: 280px;
     height: 80px;
-    border: 1px solid black;
     margin: 3px;
     font-size: 50px;
     border-radius: 5px;
@@ -82,7 +80,11 @@ button {
     margin: 3px;
     width: 50px;
     height: 50px;
+    border: none;
 }
 
+button:hover {
+    opacity: 0.50;
+}
 
 
