@@ -1,5 +1,6 @@
 const numbers = document.querySelectorAll('.numbers');
 const operators = document.querySelectorAll('.operators');
+const remove = document.querySelectorAll('.delete')
 const hover = document.querySelectorAll('button');
 const display = document.querySelector('.content');
 display.textContent = '';
@@ -64,10 +65,38 @@ for (let i = 0; i < numbers.length; i++) {
     numbers[i].addEventListener('click', (event) => {
         holdValue += event.target.id
         display.textContent = holdValue
-            if (switchNum === 0) {
+    if (switchNum === 0) {
         user.num1 = +display.textContent
     } else {
         user.num2 = +display.textContent
     }
+    })
+}
+
+
+for (let i = 0; i < remove.length; i++) {
+    remove[i].addEventListener('click', (event) => {
+        switch(event.target.id) {
+            case 'clear':
+                display.textContent = ''
+                user.num1 = 0
+                user.num2 = 0
+                holdValue = ''
+                switchNum = 0
+                break
+            case 'back':
+                if (switchNum === 0) {
+                    let arr = user.num1.toString().split('').map(Number);
+                    arr.pop()
+                    display.textContent = arr.join('')
+                    user.num1 = +display.textContent
+                } else {
+                    let arr = user.num2.toString().split('').map(Number);
+                    arr.pop()
+                    display.textContent = arr.join('')
+                    user.num2 = +display.textContent
+                }
+                break
+        }
     })
 }
