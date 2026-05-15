@@ -81,7 +81,7 @@ const clear = function() {
     user.num1 = 0
     user.num2 = 0
     user.operator = function(){};
-    holdValue = ''
+    holdValue = '' 
 }
 
 const backSpace = function() {
@@ -100,9 +100,9 @@ const backSpace = function() {
     }
 }
 
-for (let i = 0; i < operators.length; i++) {
-    operators[i].addEventListener('click', (event) => {
-        switch(event.target.id) {
+operators.forEach((button) => {
+    button.addEventListener('click', (event) => {
+         switch(event.target.id) {
             case 'add':
                 if (switchNum === 1) equals()
                 setAdd()
@@ -127,10 +127,11 @@ for (let i = 0; i < operators.length; i++) {
                 break
         }
     })
-}
+})
 
-for (let i = 0; i < numbers.length; i++) {
-    numbers[i].addEventListener('click', (event) => {
+
+numbers.forEach((button) => {
+    button.addEventListener('click', (event) => {
     holdValue += event.target.id
     display.textContent = holdValue 
     if (switchNum === 0) {
@@ -139,10 +140,11 @@ for (let i = 0; i < numbers.length; i++) {
         user.num2 = +display.textContent
     }
     })
-}
+})
 
-for (let i = 0; i < remove.length; i++) {
-    remove[i].addEventListener('click', (event) => {
+
+remove.forEach((button) => {
+    button.addEventListener('click', (event) => {
         switch(event.target.id) {
             case 'clear':
                 clear()
@@ -152,4 +154,73 @@ for (let i = 0; i < remove.length; i++) {
                 break
         }
     })
-}
+})
+
+document.addEventListener('keydown', (event)=> {
+    switch(event.key) {
+        case '1':
+            holdValue += 1
+            break;
+        case '2':
+            holdValue += 2;
+            break;
+        case '3':
+            holdValue += 3;
+            break;
+        case '4':
+            holdValue += 4;
+            break;
+        case '5':
+            holdValue += 5;
+            break;
+        case '6':
+            holdValue += 6;
+            break;
+        case '7':
+            holdValue += 7;
+            break;
+        case '8':
+            holdValue += 8;
+            break;
+        case '9':
+            holdValue += 9;
+            break;
+        case '0':
+            holdValue += 0;
+            break;
+    }
+    display.textContent = holdValue
+    if (switchNum === 0) {
+        user.num1 = +display.textContent
+    } else {
+        user.num2 = +display.textContent
+    }
+})
+
+document.addEventListener('keydown', (event) => {
+    if (event.shiftKey && event.key === '+') {
+        if (switchNum === 1) equals()
+        setAdd()
+    } else if (event.key === '-') {
+        if (switchNum === 1) equals()
+        setSubtract()
+    } else if (event.key === 'x') {
+        if (switchNum === 1) equals()
+        setMultiply()
+    } else if (event.key === '/') {
+        if (switchNum === 1) equals()
+        setDivide()
+    } else if (event.key === '.') {
+        applyDecimal()
+    } else if (event.key === '=') {
+        equals()
+    }
+})
+
+document.addEventListener('keydown', (event) => {
+    if (event.code === 'Space') {
+        clear()
+    } else if (event.key === 'Backspace') {
+        backSpace()
+    }
+})
