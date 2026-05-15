@@ -1,3 +1,4 @@
+//
 const numbers = document.querySelectorAll('.numbers');
 const operators = document.querySelectorAll('.operators');
 const remove = document.querySelectorAll('.delete')
@@ -6,12 +7,15 @@ const display = document.querySelector('.content');
 let holdValue = ''
 let switchNum = 0
 
+
+// Object that store user input state and user operator function
 const user = {
   num1: 0,
   num2: 0,
   operator: function(){},
 }
 
+// operator functions
 const operate = (operator, num1, num2) => operator(num1, num2)
 const add = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
@@ -24,30 +28,30 @@ const divide = (num1, num2) => {
     }
 } 
 
+
+// set operator function
 const setAdd = function() {
     user.operator = add;
     switchNum = 1
     holdValue = ''
 }
-
 const setSubtract = function() {
     user.operator = subtract;
     switchNum = 1
     holdValue = ''
 }
-
 const setMultiply = function() {
     user.operator = multiply;
     switchNum = 1
     holdValue = ''
 }
-
 const setDivide = function() {
     user.operator = divide;
     switchNum = 1
     holdValue = ''
 }
 
+// functions for decimal, equals, clear, backspace
 const applyDecimal = function() {
     let arr = holdValue.split(',')
     if (holdValue.includes('.')) return 
@@ -59,7 +63,6 @@ const applyDecimal = function() {
         display.textContent = holdValue
     }
 }
-
 const equals = function() {
     let result = operate(user.operator, user.num1, user.num2)
     if (result === 'ERROR') {
@@ -68,13 +71,12 @@ const equals = function() {
         switchNum = 0
         display.textContent = 'ERROR'
     } else {
-        display.textContent = result
+        display.textContent = Math.round(result)
         user.num1 = result;
         user.num2 = 0
         switchNum = 0
     }
 }
-
 const clear = function() {
     switchNum = 0
     display.textContent = ''
@@ -83,7 +85,6 @@ const clear = function() {
     user.operator = function(){};
     holdValue = '' 
 }
-
 const backSpace = function() {
     if (switchNum === 0) {
         let arr = user.num1.toString().split('');
@@ -100,6 +101,7 @@ const backSpace = function() {
     }
 }
 
+// event listeners for click 
 operators.forEach((button) => {
     button.addEventListener('click', (event) => {
          switch(event.target.id) {
@@ -156,6 +158,7 @@ remove.forEach((button) => {
     })
 })
 
+// event listeners for keyboard
 document.addEventListener('keydown', (event)=> {
     switch(event.key) {
         case '1':
