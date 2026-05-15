@@ -198,16 +198,16 @@ document.addEventListener('keydown', (event)=> {
 })
 
 document.addEventListener('keydown', (event) => {
-    if (event.shiftKey && event.key === '+') {
+    if (event.key === 'a') {
         if (switchNum === 1) equals()
         setAdd()
-    } else if (event.key === '-') {
+    } else if (event.key === 's') {
         if (switchNum === 1) equals()
         setSubtract()
-    } else if (event.key === 'x') {
+    } else if (event.key === 'm') {
         if (switchNum === 1) equals()
         setMultiply()
-    } else if (event.key === '/') {
+    } else if (event.key === 'd') {
         if (switchNum === 1) equals()
         setDivide()
     } else if (event.key === '.') {
