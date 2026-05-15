@@ -9,7 +9,7 @@ let switchNum = 0
 const user = {
   num1: 0,
   num2: 0,
-  operator: () => {},
+  operator: function(){},
 }
 
 const operate = (operator, num1, num2) => operator(num1, num2)
@@ -17,7 +17,7 @@ const add = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
 const multiply = (num1, num2) => num1 * num2;
 const divide = (num1, num2) => {
-    if (num1 === 0 || num2 === 0) {
+    if ((num1 === 0 && num2 === 0) || (num1 === 0 || num2 === 0)) {
         return 'ERROR'
     } else {
         return num1 / num2
@@ -62,16 +62,21 @@ const applyDecimal = function() {
 
 const equals = function() {
     let result = operate(user.operator, user.num1, user.num2)
-    display.textContent = result
-    switchNum = 0
-    user.num1 = result
-    user.num2 = 0
+    if (result === 'ERROR') {
+        display.textContent = 'ERROR'
+    } else {
+        display.textContent = Math.round(result)
+        user.num1 = result;
+        user.num2 = 0
+        switchNum = 0
+    }
 }
 
 const clear = function() {
     display.textContent = ''
     user.num1 = 0
     user.num2 = 0
+    user.operator = function(){};
     holdValue = ''
     switchNum = 0
 }
@@ -94,21 +99,18 @@ const backSpace = function() {
 
 for (let i = 0; i < operators.length; i++) {
     operators[i].addEventListener('click', (event) => {
+        if (switchNum === 1) equals()
         switch(event.target.id) {
             case 'add':
-                equals()
                 setAdd()
                 break
             case 'subtract':
-                equals()
                 setSubtract()
                 break
             case 'multiply':
-                equals()
                 setMultiply()
                 break
             case 'divide':
-                equals()
                 setDivide()
                 break
             case 'decimal':
@@ -132,7 +134,6 @@ for (let i = 0; i < numbers.length; i++) {
     }
     })
 }
-
 
 for (let i = 0; i < remove.length; i++) {
     remove[i].addEventListener('click', (event) => {
