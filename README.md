@@ -2,15 +2,15 @@
 A basic Javascript Calculator
 
 For keyboard support:
--'0-9' keys
--'a' key is for add
--'s' key is for subtract
--'m' key is for multiply
--'d' key is for division
--'backspace' key is for backspace
--'space' key is for clear
--'.' key is for decimal
--'=' key is for equals
+- '0-9' keys
+- 'a' key is for add
+- 's' key is for subtract
+- 'm' key is for multiply
+- 'd' key is for division
+- 'backspace' key is for backspace
+- 'space' key is for clear
+- '.' key is for decimal
+- '=' key is for equals
 
 Live: https://vinsoysauce.github.io/odin-calculator/
 ## Skills Demonstrated
@@ -19,9 +19,9 @@ Objects:
 - Invoking object variable value and object methods
 
 Events:
--Using event listeners for buttons when clicking
--Using event listeners for button when keydown
--Using event.key to trigger an action
+- Using event listeners for buttons when clicking
+- Using event listeners for button when keydown
+- Using event.key to trigger an action
 
 ## Comments
 This project was a bit difficult, thinking about state and the DOM
