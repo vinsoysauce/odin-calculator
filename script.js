@@ -3,7 +3,8 @@ const operators = document.querySelectorAll('.operators');
 const remove = document.querySelectorAll('.delete')
 const hover = document.querySelectorAll('button');
 const display = document.querySelector('.content');
-display.textContent = '';
+let holdValue = ''
+let switchNum = 0
 
 const user = {
   num1: 0,
@@ -23,39 +24,98 @@ const divide = (num1, num2) => {
     }
 } 
 
-let holdValue = ''
-let switchNum = 0
+const setAdd = function() {
+    user.operator = add;
+    switchNum = 1
+    holdValue = ''
+}
+
+const setSubtract = function() {
+    user.operator = subtract;
+    switchNum = 1
+    holdValue = ''
+}
+
+const setMultiply = function() {
+    user.operator = multiply;
+    switchNum = 1
+    holdValue = ''
+}
+
+const setDivide = function() {
+    user.operator = divide;
+    switchNum = 1
+    holdValue = ''
+}
+
+const applyDecimal = function() {
+    let arr = holdValue.split(',')
+    if (holdValue.includes('.')) return 
+    if (switchNum === 0) {
+        holdValue += '.'
+        display.textContent = holdValue
+    } else {
+        holdValue += '.'
+        display.textContent = holdValue
+    }
+}
+
+const equals = function() {
+    let result = operate(user.operator, user.num1, user.num2)
+    display.textContent = result
+    switchNum = 0
+    user.num1 = result
+    user.num2 = 0
+}
+
+const clear = function() {
+    display.textContent = ''
+    user.num1 = 0
+    user.num2 = 0
+    holdValue = ''
+    switchNum = 0
+}
+
+const backSpace = function() {
+    if (switchNum === 0) {
+        let arr = user.num1.toString().split('');
+        arr.pop()
+        holdValue = arr.join('')
+        display.textContent = holdValue
+        user.num1 = +display.textContent
+    } else {
+        let arr = user.num2.toString().split('');
+        arr.pop()
+        holdValue = arr.join('')
+        display.textContent = holdValue
+        user.num2 = +display.textContent
+    }
+}
+
 for (let i = 0; i < operators.length; i++) {
     operators[i].addEventListener('click', (event) => {
         switch(event.target.id) {
             case 'add':
-                switchNum = 1
-                holdValue = ''
-                user.operator = add;
+                equals()
+                setAdd()
                 break
             case 'subtract':
-                switchNum = 1
-                holdValue = ''
-                user.operator = subtract;
+                equals()
+                setSubtract()
                 break
             case 'multiply':
-                switchNum = 1
-                holdValue = ''
-                user.operator = multiply;
+                equals()
+                setMultiply()
                 break
             case 'divide':
-                switchNum = 1
-                holdValue = ''
-                user.operator = divide;
+                equals()
+                setDivide()
                 break
             case 'decimal':
+                applyDecimal()
                 break
             case 'equals':
-                let result = operate(user.operator, user.num1, user.num2)
-                display.textContent = result
-                switchNum = 0
-                user.num1 = result
-                user.num2 = 0
+                equals()
                 break
         }
     })
@@ -63,8 +123,8 @@ for (let i = 0; i < operators.length; i++) {
 
 for (let i = 0; i < numbers.length; i++) {
     numbers[i].addEventListener('click', (event) => {
-        holdValue += event.target.id
-        display.textContent = holdValue
+    holdValue += event.target.id
+    display.textContent = holdValue 
     if (switchNum === 0) {
         user.num1 = +display.textContent
     } else {
@@ -78,24 +138,10 @@ for (let i = 0; i < remove.length; i++) {
     remove[i].addEventListener('click', (event) => {
         switch(event.target.id) {
             case 'clear':
-                display.textContent = ''
-                user.num1 = 0
-                user.num2 = 0
-                holdValue = ''
-                switchNum = 0
+                clear()
                 break
             case 'back':
-                if (switchNum === 0) {
-                    let arr = user.num1.toString().split('').map(Number);
-                    arr.pop()
-                    display.textContent = arr.join('')
-                    user.num1 = +display.textContent
-                } else {
-                    let arr = user.num2.toString().split('').map(Number);
-                    arr.pop()
-                    display.textContent = arr.join('')
-                    user.num2 = +display.textContent
-                }
+                backSpace()
                 break
         }
     })
