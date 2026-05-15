@@ -17,7 +17,7 @@ const add = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
 const multiply = (num1, num2) => num1 * num2;
 const divide = (num1, num2) => {
-    if ((num1 === 0 && num2 === 0) || (num1 === 0 || num2 === 0)) {
+    if (num1 === 0 || num2 === 0) {
         return 'ERROR'
     } else {
         return num1 / num2
@@ -63,9 +63,12 @@ const applyDecimal = function() {
 const equals = function() {
     let result = operate(user.operator, user.num1, user.num2)
     if (result === 'ERROR') {
+        user.operator = function(){}
+        user.num2 = 0
+        switchNum = 0
         display.textContent = 'ERROR'
     } else {
-        display.textContent = Math.round(result)
+        display.textContent = result
         user.num1 = result;
         user.num2 = 0
         switchNum = 0
@@ -73,12 +76,12 @@ const equals = function() {
 }
 
 const clear = function() {
+    switchNum = 0
     display.textContent = ''
     user.num1 = 0
     user.num2 = 0
     user.operator = function(){};
     holdValue = ''
-    switchNum = 0
 }
 
 const backSpace = function() {
@@ -99,18 +102,21 @@ const backSpace = function() {
 
 for (let i = 0; i < operators.length; i++) {
     operators[i].addEventListener('click', (event) => {
-        if (switchNum === 1) equals()
         switch(event.target.id) {
             case 'add':
+                if (switchNum === 1) equals()
                 setAdd()
                 break
             case 'subtract':
+                if (switchNum === 1) equals()
                 setSubtract()
                 break
             case 'multiply':
+                if (switchNum === 1) equals()
                 setMultiply()
                 break
             case 'divide':
+                if (switchNum === 1) equals()
                 setDivide()
                 break
             case 'decimal':
