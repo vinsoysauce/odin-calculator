@@ -71,8 +71,8 @@ const equals = function() {
         switchNum = 0
         display.textContent = 'ERROR'
     } else {
-        display.textContent = Math.round(result)
-        user.num1 = result;
+        result % 1 !== 0 ? display.textContent = result.toFixed(2) : display.textContent = result
+        user.num1 = +display.textContent;
         user.num2 = 0
         switchNum = 0
     }
